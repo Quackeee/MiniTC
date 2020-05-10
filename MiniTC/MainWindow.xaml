@@ -1,0 +1,46 @@
+﻿<Window x:Class="MiniTC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:local="clr-namespace:MiniTC"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:vm="clr-namespace:MiniTC.ViewModel"
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="560" Width="693">
+
+    <Window.Resources>
+        <vm:MainWindowVM x:Key="MainWindowVM"/>
+    </Window.Resources>
+   
+    <Grid Height="Auto" Width="693" DataContext="{StaticResource MainWindowVM}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <local:PanelTC SelectedItem="{Binding LeftPanelSelectedIndex, Mode=OneWayToSource}"/>
+        <local:PanelTC Grid.Column="1" SelectedItem="{Binding RightPanelSelectedIndex, Mode=OneWayToSource}"/>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Width="100" Content="Copy >>">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding Copy}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+        </Button>
+
+    </Grid>
+
+
+
+</Window>
