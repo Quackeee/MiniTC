@@ -9,13 +9,13 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              
              mc:Ignorable="d" 
-             d:DesignHeight="450" Width="340">
+             d:DesignHeight="450" Width="340"
+             >
 
-    <UserControl.Resources>
-        <vm:VMPanelTC x:Key="PanelVM"/>
-    </UserControl.Resources>
-
-    <Grid Height="450" VerticalAlignment="Bottom" DataContext="{StaticResource PanelVM}">
+    <Grid Height="450" VerticalAlignment="Bottom">
+       
+        
+        
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -40,13 +40,15 @@
             </ComboBox>
         </StackPanel>
 
-        <ListBox Grid.Row="2" Margin="10" ItemsSource="{Binding Path=DirectoryContent}" SelectedItem="{Binding SelectedItem}" SelectedIndex="{Binding Path=SelectedIndex, Mode=OneWayToSource}">
+        <ListBox Grid.Row="2" Margin="10" ItemsSource="{Binding Path=DirectoryContent}" SelectedIndex="{Binding Path=SelectedIndex, Mode=OneWayToSource}">
             
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding ChangeDirectory}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
+            
+            
             
         </ListBox>
         <CheckBox Content="Show Hidden" Grid.Row="3" Margin="5" IsChecked="{Binding Path=ShowHidden}"/>

@@ -22,13 +22,13 @@ namespace MiniTC.Model
 
 
         public string FullDirectory { get; private set; }
-        public string DisplayName { get => FullDirectory.Substring(FullDirectory.LastIndexOf('\\') + 1); }
+        public string Name { get => FullDirectory.Substring(FullDirectory.LastIndexOf('\\') + 1); }
         public string ParentDirectory { get => _getParentDirectory(); }
         public string Drive { get => !_isDrive? FullDirectory.Substring(0, 3) : FullDirectory; }
 
         public bool IsDirectory { get => File.GetAttributes(FullDirectory).HasFlag(FileAttributes.Directory); }
         public bool IsFile { get => !IsDirectory; }
-        public bool IsHidden { get => !_isParent && (File.GetAttributes(FullDirectory).HasFlag(FileAttributes.Hidden) || DisplayName[0] == '.'); }
+        public bool IsHidden { get => !_isParent && (File.GetAttributes(FullDirectory).HasFlag(FileAttributes.Hidden) || Name[0] == '.'); }
 
         public List<DirectoryInformation> Children { get {
                 var directories = Directory.GetDirectories(FullDirectory);
@@ -54,7 +54,7 @@ namespace MiniTC.Model
         public override string ToString()
         {
             if (_isParent) return "\u21B6   ..";
-            return IsDirectory? "\uD83D\uDCC1 " + DisplayName : DisplayName;
+            return IsDirectory? "\uD83D\uDCC1 " + Name : Name;
         }
 
         public DirectoryInformation(string path, bool asParent = false)

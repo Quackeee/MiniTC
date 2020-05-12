@@ -15,6 +15,8 @@ namespace MiniTC.ViewModel
         private bool _showHidden = false;
         private string _selectedDrive = null;
         private DirectoryInformation _currentDirectory = new DirectoryInformation();
+        private int _selectedIndex;
+        private string _selectedItemPath;
 
 
         public static string[] Drives { get; } = Directory.GetLogicalDrives();
@@ -28,15 +30,19 @@ namespace MiniTC.ViewModel
             }
         }
         
-        public int SelectedIndex { get; set; }
-
+        public int SelectedIndex { get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value; Debug.WriteLine(_selectedIndex);
+                if (SelectedIndex != -1) SelectedItemPath = DirectoryContent[SelectedIndex].FullDirectory;
+                else SelectedItemPath = null;
+            }
+        }
         public bool ShowHidden
         {
             get => _showHidden;
             set { _showHidden = value; OnPropertyChanged(nameof(DirectoryContent));}
         }
-
-        //public string SelectedItem;
 
         private RelayCommand _changeDirectory = null;
         private RelayCommand _changeDrive = null;
@@ -54,7 +60,6 @@ namespace MiniTC.ViewModel
                 return _changeDirectory;
             }
         }
-    
         public RelayCommand ChangeDrive
         {
             get
@@ -71,5 +76,10 @@ namespace MiniTC.ViewModel
                 return _changeDrive;
             }
         }
+
+        public string SelectedItemPath { get => _selectedItemPath; set { _selectedItemPath = value; Debug.WriteLine(SelectedItemPath); OnPropertyChanged(nameof(SelectedItemPath)); } }
+        public string SelectedItemName { get => DirectoryContent[SelectedIndex].Name; }
+
+        public void RefreshList() => OnPropertyChanged(nameof(DirectoryContent));
     }
 }

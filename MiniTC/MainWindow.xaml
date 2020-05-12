@@ -9,7 +9,9 @@
         xmlns:vm="clr-namespace:MiniTC.ViewModel"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="560" Width="693">
+        Title="MainWindow" Height="560" Width="693"
+        
+        Name="MyWindow">
 
     <Window.Resources>
         <vm:MainWindowVM x:Key="MainWindowVM"/>
@@ -26,18 +28,10 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <local:PanelTC SelectedItem="{Binding LeftPanelSelectedIndex, Mode=OneWayToSource}"/>
-        <local:PanelTC Grid.Column="1" SelectedItem="{Binding RightPanelSelectedIndex, Mode=OneWayToSource}"/>
+        <local:PanelTC DataContext="{Binding LeftPanelVM, Mode=OneWay}" />
+        <local:PanelTC DataContext="{Binding RightPanelVM, Mode=OneWay}" Grid.Column="1" />
 
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Width="100" Content="Copy >>">
-
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click">
-                    <i:InvokeCommandAction Command="{Binding Copy}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-
-        </Button>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Width="100" Content="Copy >>" Command="{Binding Copy}"/>
 
     </Grid>
 
