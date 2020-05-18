@@ -7,6 +7,7 @@
              xmlns:vm="clr-namespace:MiniTC.ViewModel"
              xmlns:local="clr-namespace:MiniTC"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:resx="clr-namespace:MiniTC.Properties"
              
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="340"
@@ -24,11 +25,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Label Content="path" Margin="5"/>
+            <Label Content="{Binding Source={x:Static resx:Resources.PathLabel}}" Margin="5"/>
             <TextBox Focusable="False" Margin="8"  Text="{Binding Path=CurrentDirectory, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="5">
-            <Label Content="drives" Margin="0,0,13,0"/>
+            <Label Content="{Binding Source={x:Static resx:Resources.DrivesLabel}}" Margin="0,0,13,0"/>
             <ComboBox ItemsSource="{Binding Path=Drives}" SelectedItem="{Binding Path=SelectedDrive}">
 
                 <i:Interaction.Triggers>
@@ -51,7 +52,7 @@
             
             
         </ListBox>
-        <CheckBox Content="Show Hidden" Grid.Row="3" Margin="5" IsChecked="{Binding Path=ShowHidden}"/>
+        <CheckBox Content="{Binding Source={x:Static resx:Resources.ShowHiddenLabel}}" Grid.Row="3" Margin="5" IsChecked="{Binding Path=ShowHidden}"/>
         
         
 

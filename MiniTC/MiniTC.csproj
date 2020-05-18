@@ -76,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\SaveFileDialogBox.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,6 +99,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="View\CommandDialogBox.cs" />
+    <Compile Include="View\FileDialogBox.cs" />
+    <Compile Include="View\MessageDialogBox.cs" />
+    <Compile Include="View\OpenFileDialogBox.cs" />
     <Compile Include="View\PanelTC.xaml.cs">
       <DependentUpon>PanelTC.xaml</DependentUpon>
     </Compile>
@@ -115,7 +120,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />

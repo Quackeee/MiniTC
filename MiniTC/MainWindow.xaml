@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:MiniTC"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:vm="clr-namespace:MiniTC.ViewModel"
+        xmlns:resx="clr-namespace:MiniTC.Properties"
         
         mc:Ignorable="d"
         Title="MainWindow" Height="560" Width="693"
@@ -28,10 +29,12 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <local:PanelTC DataContext="{Binding LeftPanelVM, Mode=OneWay}" />
+        <local:PanelTC DataContext="{Binding LeftPanelVM, Mode=OneWay}"/>
         <local:PanelTC DataContext="{Binding RightPanelVM, Mode=OneWay}" Grid.Column="1" />
 
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Width="100" Content="Copy >>" Command="{Binding Copy}"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Width="100"
+                Content="{Binding Source={x:Static resx:Resources.CopyButtonContent}}"
+                Command="{Binding Copy}"/>
 
     </Grid>
 

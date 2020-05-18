@@ -21,31 +21,9 @@ namespace MiniTC
     /// </summary>
     public partial class PanelTC : UserControl
     {
-
-        public static DependencyProperty SelectedItemPathProperty =
-        DependencyProperty.Register(
-            "SelectedItemPath",
-            typeof(string),
-            typeof(PanelTC),
-            new PropertyMetadata(String.Empty, OnSelectedItemPathChanged));
-
-        public string SelectedItemPath
-        {
-            get { Debug.WriteLine("SelectedItemPath requested"); return (string) GetValue(SelectedItemPathProperty); }
-            set { SetValue(SelectedItemPathProperty, value); }
-        }
-
-        private static void OnSelectedItemPathChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            Debug.WriteLine("SelectedItemPath changed");
-        }
-
         public PanelTC()
         {
             InitializeComponent();
-
-            var binding = new Binding("SelectedItemPath") { Mode = BindingMode.OneWay };
-            SetBinding(SelectedItemPathProperty, binding);
         }
     }
 }
